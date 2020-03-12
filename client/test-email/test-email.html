@@ -1,0 +1,41 @@
+<template name="test-email">
+  <div class="">
+    <form id="forward-message"
+       _method="post"
+       _enctype="multipart/form-data"
+       class="email-form js-submit-email"
+       _action2="/api/email-forward"
+       action="/forward-email"
+       >
+
+             <div class="row">
+                <div class="col-md-6">
+                   <input type="text" id="uname" class="form-control"  name="uname" placeholder="Your name"><label id="dis"></label>
+                </div>
+                <div class="col-md-6">
+                   <input type="text" id="email" class="form-control" name="email" placeholder="Your E-mail"><label id="dis1"></label>
+                </div>
+                <div class="col-md-12">
+                   <input type="text" id="phone" class="form-control" name="phone" placeholder="Your Phone"><label id="dis2"></label>
+                </div>
+                <div class="col-md-12">
+                   <input type="text" id="subject" class="form-control" name="subject" placeholder="Subject"><label id="dis3"></label>
+                </div>
+                <div class="col-md-12">
+                  <textarea rows="5" id="message" class="form-control" name="message" placeholder="Your message:(Maximum 4000 characters)" ></textarea><label id="dis4"></label>
+                </div>
+               <div class="col-md-12">
+                   <div class="g-recaptcha" id="captcha" data-sitekey="6LeleLoUAAAAAHD7JJqJ7UWgFo-lDvOz4J0YQ5Vn"></div> <label id="dis5"></label>
+                </div>
+                <div class="col-md-12">
+                   <input type="submit" value="submit">
+                   <input type="checkbox" id="remote-checkbox" value="remote" name="remote">
+                   <label for="remote-checkbox">Remote</label>
+                </div>
+             </div>
+
+       </form>
+  </div>
+
+
+</template>

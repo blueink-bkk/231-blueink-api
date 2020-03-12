@@ -3,8 +3,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-import './welcome/welcome.html';
 import './welcome/welcome.js';
+import './test-email/test-email.js';
 
 /*
 import './upload/upload.html';

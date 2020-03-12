@@ -1,3 +1,5 @@
+import './welcome.html';
+
 const TP = Template['welcome'];
 
 FlowRouter.route('/', {

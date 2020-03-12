@@ -5,6 +5,9 @@ const os = require('os');
 const fs = require('fs-extra');
 const path = require('path')
 const inspect = require('util').inspect;
+// require('../gmail-auth.js')
+
+//require('./get-gmail-credentials.js')
 
 const app = express();
 app.use('/static',express.static('public'))
@@ -37,10 +40,15 @@ app.post('/eemail-forward', async (req, res)=>{
   res.end(JSON.stringify(o));
 })
 
+/*
+app.post('/forward-email', (req,res) =>{
+  console.log(`>> forward-email req.body:`, req.body)
+  res.end(JSON.stringify({error:'hello'}));
+});*/
 
-app.post('/email-forward', require('./email-forward.js'));
+app.post('/forward-email', require('./forward-email.js'));
 
-
+//app.get('/get-gmail-credentials', require('./get-gmail-credentials.js'));
 
 
 /*
@@ -49,7 +57,7 @@ app.post('/email-forward', require('./email-forward.js'));
 
 //function museum_assets(folder) {
 const env = process.env.METEOR_SETTINGS && JSON.parse(process.env.METEOR_SETTINGS)
-console.log({env})
+console.log(`@60: http_server.js : `, env)
 
 
 /*
