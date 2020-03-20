@@ -2,8 +2,8 @@ module.exports = {
   servers: {
     one: {
       // TODO: set host address, username, and authentication method
-      host: 'ultimheat.com',
-      username: 'dkz',
+      host: 'inhelium.com',
+      username: 'dkz'
     }
   },
 
@@ -34,7 +34,7 @@ module.exports = {
       // If you are using ssl, it needs to start with https://
 //      ROOT_URL: 'http://ultimheat.com/dkz-jou',
 //      ROOT_URL: 'http://ultimheat.com',
-      ROOT_URL: 'http://45.44.5.114/api',
+      ROOT_URL: 'http://inhelium.com/api',
 
 //      ROOT_URL: 'http://ultimheat.com/',
       PORT: 32048

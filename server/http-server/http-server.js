@@ -10,6 +10,7 @@ const inspect = require('util').inspect;
 //require('./get-gmail-credentials.js')
 
 const app = express();
+//const cors = require('cors');
 app.use('/static',express.static('public'))
 
 var Busboy = require('busboy');
@@ -19,6 +20,13 @@ WebApp.connectHandlers.use(app);
 var device = require('express-device');
 app.use(device.capture());
 app.use(express.urlencoded()); // for submit-form
+
+// https://medium.com/@alexishevia/using-cors-in-express-cac7e29b005b
+
+/*
+FIREFOX :: Multiple CORS header ‘Access-Control-Allow-Origin’ not allowed
+app.use(cors({credentials:true,}));
+*/
 
 //const bodyParser = require("body-parser");
 //app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,12 +49,33 @@ app.post('/eemail-forward', async (req, res)=>{
 })
 
 /*
-app.post('/forward-email', (req,res) =>{
-  console.log(`>> forward-email req.body:`, req.body)
-  res.end(JSON.stringify({error:'hello'}));
-});*/
+app.get('/without-cors', (req, res, next) => {
+  res.json({ msg: '😞 no CORS, no party!' })
+})
 
-app.post('/forward-email', require('./forward-email.js'));
+app.get('/with-cors', cors(), (req, res, next) => {
+  res.json({ msg: 'WHOAH with CORS it works! 🔝 🎉' })
+})*/
+
+// MULTIPLE !!! app.options('/forward-email', cors());
+
+app.post('/forward-email', async (req,res,next) =>{
+  console.log(`>> forward-email v2 req.body:`, req.body)
+  const o = await require('./forward-email.js')(req.body)
+  console.log(`@63: o:`,o)
+  res.status(200)
+  res.end(JSON.stringify(o));
+});
+
+/*
+app.post('/forward-email', cors(), require('./forward-email.js'));
+module.exports = async function(req,res) {
+  console.log(`@28: req.body:`, req.body)
+  const o = await forward_email(req.body)
+  res.status(200)
+  res.end(JSON.stringify(o));
+}; */
+
 
 //app.get('/get-gmail-credentials', require('./get-gmail-credentials.js'));
 

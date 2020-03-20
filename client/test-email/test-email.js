@@ -148,18 +148,26 @@ TP.events({
 
     const params = new URLSearchParams();
     Object.keys(h).forEach(key =>{
-      params.append(key, h[key]);
+      params.set(key, h[key]);
     })
-    params.append('message', msg2);
+    params.set('message', msg2);
 
 
+    const headers = new Headers();
+//    headers.append('Content-Type', 'application/json');
 
     if (h.remote) {
-      fetch('http://ultimheat.co.th/api/email-forward', {
-         method: 'POST',
-  //       body: new URLSearchParams(fdata) // event.target is the form
-        body: params
-       }).then((resp) => {
+      // const url = 'http://ultimheat.co.th/api/email-forward';
+      const url = 'https://ultimheat.com/api/forward-email';
+      fetch(url, {
+        method: 'POST',
+   //       body: new URLSearchParams(fdata) // event.target is the form
+         credentials: 'omit', // include, *same-origin, omit
+         mode: 'cors', // no-cors, *cors, same-origin
+         headers,
+         body: params
+        })
+      .then((resp) => {
          console.log({resp})
          return resp.json(); // or resp.text() or whatever the server sends
        }).then((retv) => {
@@ -172,7 +180,7 @@ TP.events({
          }
        // TODO handle body
        }).catch((error) => {
-         console.log(`@97: `,{error})
+         console.log(`@183: `,{error})
          //error(error)
        // TODO handle error
        });
@@ -191,7 +199,7 @@ TP.events({
 //       body: h
 //       body: new URLSearchParams(fdata) // event.target is the form
       body: params
-     }).then((resp) => {
+    }).then((resp) => {
        console.log({resp})
        return resp.json(); // or resp.text() or whatever the server sends
      }).then((retv) => {
@@ -204,7 +212,7 @@ TP.events({
        }
      // TODO handle body
      }).catch((error) => {
-       console.log(`@97: `,{error})
+       console.log(`@215: `,{error})
        //error(error)
      // TODO handle error
      });
