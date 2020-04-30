@@ -14,7 +14,7 @@
     "express-device": "^0.4.2",
     "fs-extra": "^8.1.0",
     "googleapis": "^47.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "meteor-node-stubs": "^1.0.0"
   },
   "meteor": {
